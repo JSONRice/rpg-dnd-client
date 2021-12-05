@@ -1,10 +1,10 @@
 import React from 'react'
-import {Name} from '../../components/Name'
-import {Health} from '../../components/Health'
-import {Conditions} from '../../components'
-import {Weather} from '../../components/Weather'
+import {Name} from '../Name'
+import {Health} from '../Health'
+import {Conditions} from '../index'
+import {Weather} from '../Weather'
 import styled from '@emotion/styled'
-import {WorldDateTime} from '../../components'
+import {WorldDateTime} from '../index'
 
 const WeatherConditions = styled.div`
   display: flex;

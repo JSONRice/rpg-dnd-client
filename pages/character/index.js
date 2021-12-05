@@ -1,5 +1,5 @@
 import React from 'react'
-import { Summary } from './Summary'
+import { Summary } from '../../components/CharacterSummary'
 
 export default function Character() {
   // TODO: fetch all this mocked up data from the database
