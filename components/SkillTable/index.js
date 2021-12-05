@@ -1,0 +1,1 @@
+export { SkillTable } from './SkillTable'
