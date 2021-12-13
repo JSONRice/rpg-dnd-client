@@ -1,17 +1,22 @@
+import {useRouter} from 'next/router'
 import React, {useEffect, useState} from 'react'
+import {context} from '../../context/providers'
 
 export default function Inventory() {
 
-  // componentDidMount, componentWillUnmount, componentDidUpdate
+  const router = useRouter()
+  let {state: {isLoggedIn}} = React.useContext(context);
+
   useEffect(() => {
-    console.log("The name is ", name);
+    if (!isLoggedIn) {
+      router.push('/')
+    }
   })
 
-  const [name, setName] = useState("Jason")
+  if (!isLoggedIn) return null;
 
   return (
     <div>
-      <input type="text" onClick={e => setName(e.target.value)}/>
       <h1>INVENTORY PAGE</h1>
     </div>
   )

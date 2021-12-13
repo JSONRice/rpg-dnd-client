@@ -1,7 +1,8 @@
 import {
   ADD_CHAT_MESSAGE,
+  CONNECT,
   SET_CHARACTER,
-  SET_IMAGE
+  SET_IMAGE, SET_IS_LOGGED_IN
 } from '../types/rpg-types'
 import {initialState} from './initialState'
 import React, {createContext, useReducer} from 'react'
@@ -24,6 +25,33 @@ const reducer = (state, action) => {
 
       return {
         ...state
+      }
+    case CONNECT:
+      const {msg} = payload
+      if (msgValid(msg)) {
+        const { username, password } = msg
+        state.username = username
+      }
+
+      return {
+        ...state
+      }
+    case SET_IS_LOGGED_IN:
+
+      let { character, error } = payload
+      debugger
+      let isLoggedIn = character && Object.keys(character).length > 0 && !error
+
+      if (!isLoggedIn) {
+        character = null
+      }
+
+      return {
+        ...state,
+        character: {
+          ...character
+        },
+        isLoggedIn
       }
     case SET_CHARACTER:
       const {msg: charMsg} = payload
