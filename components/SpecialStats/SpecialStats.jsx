@@ -12,7 +12,7 @@ const Label = styled.span`
 export const SpecialStats = ({character}) => (
   <div>
     {
-      character?.specials.map(({name, description}, i) => (
+      character?.specials?.map(({name, description}, i) => (
         <div key={`special-${i}`}>
           <div>
             <Label>{name}</Label>

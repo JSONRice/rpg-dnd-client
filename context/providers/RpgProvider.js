@@ -1,62 +1,85 @@
 import {
-  RESTART_GAME,
-  UPDATE_GAME_SQUARES,
-  UPDATE_MOVE,
-  UPDATE_IS_X_NEXT,
-  UPDATE_STEP_NUMBER,
-  UPDATE_HISTORY
+  ADD_CHAT_MESSAGE,
+  CONNECT,
+  SET_CHARACTER,
+  SET_IMAGE, SET_IS_LOGGED_IN
 } from '../types/rpg-types'
-import { initialState } from './initialState'
-import React, { createContext, useReducer } from 'react'
+import {initialState} from './initialState'
+import React, {createContext, useReducer} from 'react'
 
-const context = createContext(initialState);
-const { Provider } = context;
+const context = createContext(initialState)
+const {Provider} = context
+
+const msgValid = msg => msg && typeof msg === 'object'
 
 const reducer = (state, action) => {
-  let { payload, type } = action;
-  let { history } = state;
-
+  let {payload, type} = action
   switch (type) {
-    case RESTART_GAME:
-      initialState.history = [{ squares: Array(9).fill(null) }]
-      return initialState;
-    case UPDATE_IS_X_NEXT:
-      return {
-        ...state,
-        isXNext: payload
-      }
-    case UPDATE_GAME_SQUARES:
+    case ADD_CHAT_MESSAGE:
+      const {msg: chatMsg} = payload
 
-      // update the game state (moves):
-      history.push(payload)
+      if (msgValid(chatMsg)) {
+        chatMsg.id = state.chatMessages.length + 1
+        state.chatMessages = [...state.chatMessages, chatMsg]
+      }
 
       return {
-        squares: payload,
-        history
+        ...state
       }
-    case UPDATE_STEP_NUMBER:
+    case CONNECT:
+      const {msg} = payload
+      if (msgValid(msg)) {
+        const { username, password } = msg
+        state.username = username
+      }
+
+      return {
+        ...state
+      }
+    case SET_IS_LOGGED_IN:
+
+      let { character, error } = payload
+      debugger
+      let isLoggedIn = character && Object.keys(character).length > 0 && !error
+
+      if (!isLoggedIn) {
+        character = null
+      }
+
       return {
         ...state,
-        stepNumber: payload
+        character: {
+          ...character
+        },
+        isLoggedIn
       }
-    case UPDATE_HISTORY:
-      return {
-        ...state,
-        history: payload
+    case SET_CHARACTER:
+      const {msg: charMsg} = payload
+      if (msgValid(charMsg)) {
+        state.character = JSON.parse(charMsg.data)
       }
-    case UPDATE_MOVE:
+
       return {
-        squares: history[payload].squares, // the payload is the index of the squares to load
-        history // keep the states intact
+        ...state
+      }
+    case SET_IMAGE:
+      const {msg: imgMsg} = payload
+      if (msgValid(imgMsg)) {
+        let strSource = "data:image/jpeg;base64," + imgMsg.data
+        state.images = [...state.images, strSource]
+      }
+
+      return {
+        ...state
       }
     default:
-      return state;
+      return state
   }
 }
 
-const RpgProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const value = { state, dispatch };
+const RpgProvider = ({children}) => {
+  const [state, dispatch] = useReducer(reducer, initialState)
+  const value = {state, dispatch}
 
   return (
     <Provider value={value}>
@@ -65,4 +88,4 @@ const RpgProvider = ({ children }) => {
   )
 }
 
-export { context, RpgProvider }
+export {context, RpgProvider}

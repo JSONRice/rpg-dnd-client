@@ -1,2 +1,2 @@
-export { apiUtils } from './api-utils'
+export { apiUtils } from './api'
 export { characterUtils } from './character'

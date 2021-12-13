@@ -48,7 +48,7 @@ export const DndAccordionStorybook = () => {
   )
 }
 
-// TODO: fetch this from the Java server API
+// TODO: fetch this from the Java server API or a JSON mock server
 const character = {
   "_id": {
     "$oid": "6198657827fb35ffe5e2ce68"

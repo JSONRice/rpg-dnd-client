@@ -36,8 +36,9 @@ export const SpellTabPanels = ({spells}, i) => {
                           <Label>{name}</Label>
                           <div>Type: {type}</div>
                           <div>Range: {range}</div>
-                          <Button onClick={onOpen}>Spell Details</Button>
-                          <SpellDescriptionModal description={description} name={name}/>
+                          {/*TODO: finish the next two lines of work:*/}
+                          {/*<Button onClick={onOpen}>Spell Details</Button>*/}
+                          {/*<SpellDescriptionModal description={description} name={name}/>*/}
                         </div>
                         <Divider/>
                         <br/>

@@ -1,13 +1,12 @@
-import { character, monsters, test } from '../data'
+import { character, monsters } from '../data'
 
-// TODO: delete skills here
 export const initialState = {
   character,
+  username: '',
+  chatMessages: [{id:0,type:"info",data:"Beginning of messages"}],
+  images:[],
+  isLoggedIn: false,
+  isConnected: false,
   monsters,
-  skills: [
-    { name: "Acrobatics", value: 4 },
-    { name: "Perception", value: 2 },
-    { name: "Language:Orcish", value: 5 }
-  ],
   totalSkills: 10
 }
