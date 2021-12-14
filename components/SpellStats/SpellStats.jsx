@@ -16,7 +16,7 @@ export const SpellStats = ({character}) => {
       <Tabs>
         <TabList>
           {
-            spellLevels.map((spell, i) => {
+            spellLevels?.map((spell, i) => {
               return (
                 <Tab key={`tab-lv-${i}`}>
                   Lv. {i}
