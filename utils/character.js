@@ -57,38 +57,40 @@ const formatSpells = rawSpells => {
 
 export const characterUtils = {
   parseCharacter: character => {
-    const {
-      name,
-      race,
-      speed,
-      armorClass,
-      hitpoint,
-      abilityMods: abilities,
-      specials,
-      spells,
-      skills
-    } = character
+    if (character) {
+      const {
+        name,
+        race,
+        speed,
+        armorClass,
+        hitpoint,
+        abilityMods: abilities,
+        specials,
+        spells,
+        skills
+      } = character
 
-    const races = Object.keys(race)
-      .reduce((combined, race) => {
-        return combined + ", " + race
-      })
+      const races = Object.keys(race)
+        .reduce((combined, race) => {
+          return combined + ", " + race
+        })
 
-    return {
-      armorClass: parse(armorClass),
-      hitPoints: parse(hitpoint),
-      name,
-      races,
-      speed: parse(speed),
-      abilities: abilities.map(({name, stat}) => {
-        return {
-          name,
-          stat: parse(stat)
-        }
-      }),
-      specials,
-      spellLevels: formatSpells(spells),
-      skills: formatSkills(skills)
+      return {
+        armorClass: parse(armorClass),
+        hitPoints: parse(hitpoint),
+        name,
+        races,
+        speed: parse(speed),
+        abilities: abilities.map(({name, stat}) => {
+          return {
+            name,
+            stat: parse(stat)
+          }
+        }),
+        specials,
+        spellLevels: formatSpells(spells),
+        skills: formatSkills(skills)
+      }
     }
   }
 }

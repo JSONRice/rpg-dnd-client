@@ -56,7 +56,7 @@ export default function Login() {
         }}
         onSubmit={(values, actions) => {
           const { username, password } = values
-          apiUtils.authenticate(username, password)
+          apiUtils.authenticate(username.toLowerCase(), password)
             .then(data => data.json())
             .then(character => {
               dispatch({

@@ -27,18 +27,21 @@ export default function Character() {
   })
 
   // TODO: fetch all this mocked up data from the database
-  const hp = {current: 15, total: 50}
-
-  const characterConditions = [
-    {icon: 'poison', color: 'green'},
-    {icon: 'web'}
-  ]
-
-  const weatherConditions = [
-    {icon: 'sunny', color: 'orange'},
-  ]
+  // const hp = {current: 15, total: 50}
+  //
+  // const characterConditions = [
+  //   {icon: 'poison', color: 'green'},
+  //   {icon: 'web'}
+  // ]
+  //
+  // const weatherConditions = [
+  //   {icon: 'sunny', color: 'orange'},
+  // ]
 
   const parsedCharacter = characterUtils.parseCharacter(character)
+
+  if (!parsedCharacter) return null
+
   const {name, races, skills} = parsedCharacter
 
   return (
