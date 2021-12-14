@@ -10,8 +10,6 @@ export const apiUtils = {
   authenticate: (username, password) => {
     const utfUsername = encodeURIComponent(username)
     const utfPassword = encodeURIComponent(password)
-    return fetch(`${heroku}/login?username=${utfUsername}&password=${utfPassword}`, {
-      mode: 'no-cors'
-    })
+    return fetch(`${heroku}/login?username=${utfUsername}&password=${utfPassword}`)
   }
 }
