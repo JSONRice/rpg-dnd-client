@@ -70,10 +70,13 @@ export const characterUtils = {
         skills
       } = character
 
-      const races = Object.keys(race)
-        .reduce((combined, race) => {
-          return combined + ", " + race
-        })
+      let races = ''
+      if (race) {
+        races = Object.keys(race)
+          .reduce((combined, race) => {
+            return combined + ", " + race
+          })
+      }
 
       return {
         armorClass: parse(armorClass),
@@ -92,7 +95,5 @@ export const characterUtils = {
         skills: formatSkills(skills)
       }
     }
-
-    return new Object()
   }
 }
