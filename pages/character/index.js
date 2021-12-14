@@ -40,7 +40,12 @@ export default function Character() {
 
   const parsedCharacter = characterUtils.parseCharacter(character)
 
-  if (!parsedCharacter) return null
+  // This should never happen:
+  if (!parsedCharacter) {
+    return (
+      <h1>Character not found for user</h1>
+    )
+  }
 
   const {name, races, skills} = parsedCharacter
 
