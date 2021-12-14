@@ -9,7 +9,7 @@ const parse = (field, key = "raw") => field && field[key]["$numberInt"]
 const parseNum = (field, key = "$numberInt") => field && parseInt(field[key])
 
 const formatSkills = rawSkills => {
-  return rawSkills.map(({name, stat, passive, description}) => {
+  return rawSkills?.map(({name, stat, passive, description}) => {
     return {
       name,
       stat: parse(stat),
@@ -20,6 +20,8 @@ const formatSkills = rawSkills => {
 }
 
 const formatSpells = rawSpells => {
+  if (!rawSpells) return;
+
   const uniqueLvs = new Set()
   rawSpells.forEach(({level}) => {
     uniqueLvs.add(parseNum(level))
@@ -84,7 +86,7 @@ export const characterUtils = {
         name,
         races,
         speed: parse(speed),
-        abilities: abilities.map(({name, stat}) => {
+        abilities: abilities?.map(({name, stat}) => {
           return {
             name,
             stat: parse(stat)
