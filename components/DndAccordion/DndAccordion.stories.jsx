@@ -25,6 +25,13 @@ const Title = ({children}) => (
 
 export const DndAccordionStorybook = () => {
   const parsedCharacter = characterUtils.parseCharacter(character)
+
+  if (!parsedCharacter) {
+    return (
+      <h1>Character not found for user</h1>
+    )
+  }
+
   const {name, races, skills} = parsedCharacter
 
   return (
