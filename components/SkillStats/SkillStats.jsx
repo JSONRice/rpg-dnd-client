@@ -9,10 +9,10 @@ const SmallLabel = styled(Label)`
   font-size: 14px;
 `
 
-export const SkillStats = ({skills}) => (
+export const SkillStats = ({skills = []}) => (
   <div>
     {
-      skills.map(({name, stat, passive, description}, i) => (
+      skills?.map(({name, stat, passive, description}, i) => (
         <div key={`skill-${i}`}>
           <div>
             <Label>{name}</Label>
