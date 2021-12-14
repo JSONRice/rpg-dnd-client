@@ -22,11 +22,9 @@ export default function Character() {
 
   React.useEffect(() => {
     if (!isLoggedIn) {
-      router.push('/')
+      router.push('/', undefined, { shallow: true })
     }
   })
-
-  if (!isLoggedIn) return null;
 
   // TODO: fetch all this mocked up data from the database
   const hp = {current: 15, total: 50}

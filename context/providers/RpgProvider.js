@@ -5,15 +5,16 @@ import {
   SET_IMAGE, SET_IS_LOGGED_IN
 } from '../types/rpg-types'
 import {initialState} from './initialState'
-import React, {createContext, useReducer} from 'react'
+import React, {createContext, useReducer, useContext} from 'react'
 
-const context = createContext(initialState)
+const context = createContext()
 const {Provider} = context
 
 const msgValid = msg => msg && typeof msg === 'object'
 
 const reducer = (state, action) => {
   let {payload, type} = action
+
   switch (type) {
     case ADD_CHAT_MESSAGE:
       const {msg: chatMsg} = payload
@@ -39,7 +40,6 @@ const reducer = (state, action) => {
     case SET_IS_LOGGED_IN:
 
       let { character, error } = payload
-      debugger
       let isLoggedIn = character && Object.keys(character).length > 0 && !error
 
       if (!isLoggedIn) {
@@ -73,16 +73,17 @@ const reducer = (state, action) => {
         ...state
       }
     default:
-      return state
+      return {
+        ...state
+      }
   }
 }
 
 const RpgProvider = ({children}) => {
   const [state, dispatch] = useReducer(reducer, initialState)
-  const value = {state, dispatch}
 
   return (
-    <Provider value={value}>
+    <Provider value={{state, dispatch}}>
       {children}
     </Provider>
   )

@@ -9,15 +9,13 @@ export default function Home() {
   const router = useRouter()
   const [spell, setSpell] = useState("")
   const [data, setData] = useState()
-  let {state: {isLoggedIn}} = React.useContext(context);
+  let {state} = React.useContext(context);
 
   React.useEffect(() => {
-    if (!isLoggedIn) {
-      router.push('/')
+    if (!state.isLoggedIn) {
+      router.push('/', undefined, { shallow: true })
     }
   })
-
-  if (!isLoggedIn) return null;
 
   const grabSpell = () => {
     if (spell) {

@@ -1,19 +1,18 @@
 import {useRouter} from 'next/router'
-import React from 'react'
+import * as React from 'react'
 import {SkillTable} from '../../components'
 import {context} from '../../context/providers'
 
 export default function Lore() {
   const router = useRouter()
-  let {state: {isLoggedIn}} = React.useContext(context);
+  let {state} = React.useContext(context);
+  const { isLoggedIn } = state
 
   React.useEffect(() => {
     if (!isLoggedIn) {
-      router.push('/')
+      router.push('/', undefined, { shallow: true })
     }
   })
-
-  if (!isLoggedIn) return null;
 
   return (
     <div>

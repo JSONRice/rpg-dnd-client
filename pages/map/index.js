@@ -5,20 +5,16 @@ import {MapImage} from "../../components";
 
 export default function Map() {
   const router = useRouter()
-  let {state: {isLoggedIn, totalSkills}} = React.useContext(context);
+  let {state: {isLoggedIn}} = React.useContext(context);
 
   React.useLayoutEffect(() => {
     if (!isLoggedIn) {
-      router.push('/')
+      router.push('/', undefined, { shallow: true })
     }
   })
 
-  if (!isLoggedIn) return null;
-
   return (
     <div>
-      <h1>MAP PAGE</h1>
-      <p>I see {totalSkills} Skills!</p>
       <MapImage title="The Shire"/>
     </div>
   );

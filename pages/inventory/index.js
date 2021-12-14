@@ -9,11 +9,9 @@ export default function Inventory() {
 
   useEffect(() => {
     if (!isLoggedIn) {
-      router.push('/')
+      router.push('/', undefined, { shallow: true })
     }
   })
-
-  if (!isLoggedIn) return null;
 
   return (
     <div>

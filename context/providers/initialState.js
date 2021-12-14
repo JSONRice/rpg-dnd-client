@@ -1,7 +1,7 @@
-import { character, monsters } from '../data'
+import { monsters } from '../data'
 
 export const initialState = {
-  character,
+  character: {},
   username: '',
   chatMessages: [{id:0,type:"info",data:"Beginning of messages"}],
   images:[],

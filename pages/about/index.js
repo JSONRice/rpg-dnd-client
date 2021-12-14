@@ -9,15 +9,13 @@ const InnerDiv = styled.div`
 
 export default function About() {
   const router = useRouter()
-  let {state: {isLoggedIn}} = React.useContext(context);
+  let {state} = React.useContext(context);
 
   React.useEffect(() => {
-    if (!isLoggedIn) {
-      router.push('/')
+    if (!state.isLoggedIn) {
+      router.push('/', undefined, { shallow: true })
     }
   })
-
-  if (!isLoggedIn) return null;
 
   return (
     <div>

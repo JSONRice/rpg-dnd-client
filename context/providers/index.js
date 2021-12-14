@@ -1,2 +1,2 @@
-export { RpgProvider } from './RpgProvider';
-export { context } from './RpgProvider';
+export { RpgProvider } from './RpgProvider'
+export { context } from './RpgProvider'

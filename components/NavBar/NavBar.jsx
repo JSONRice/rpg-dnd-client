@@ -14,7 +14,7 @@ import {
   PopoverContent,
   useColorModeValue,
   useBreakpointValue,
-  useDisclosure,
+  useDisclosure
 } from '@chakra-ui/react';
 import {
   HamburgerIcon,
@@ -22,24 +22,25 @@ import {
   ChevronDownIcon,
   ChevronRightIcon
 } from '@chakra-ui/icons';
+import NextLink from 'next/link'
 
 // See: https://chakra-templates.dev/navigation/navbar
 const NAV_ITEMS = [
-  {
-    label: 'Misc',
-    children: [
-      {
-        label: 'Explore Design Work',
-        subLabel: 'Trending Design to inspire you',
-        href: '/'
-      },
-      {
-        label: 'New & Noteworthy',
-        subLabel: 'Up-and-coming Designers',
-        href: '/'
-      }
-    ]
-  },
+  // {
+  //   label: 'Misc',
+  //   children: [
+  //     {
+  //       label: 'Explore Design Work',
+  //       subLabel: 'Trending Design to inspire you',
+  //       href: '/'
+  //     },
+  //     {
+  //       label: 'New & Noteworthy',
+  //       subLabel: 'Up-and-coming Designers',
+  //       href: '/'
+  //     }
+  //   ]
+  // },
   {
     label: 'Inventory',
     href: '/inventory'
@@ -59,6 +60,10 @@ const NAV_ITEMS = [
   {
     label: 'Character',
     href: '/character'
+  },
+  {
+    label: 'Creatures',
+    href: '/creatures'
   }
 ];
 
@@ -139,18 +144,19 @@ const DesktopNav = () => {
         <Box key={navItem.label}>
           <Popover trigger={'hover'} placement={'bottom-start'}>
             <PopoverTrigger>
-              <Link
-                p={2}
-                href={navItem.href ?? '#'}
-                fontSize={'sm'}
-                fontWeight={500}
-                color={linkColor}
-                _hover={{
-                  textDecoration: 'none',
-                  color: linkHoverColor
-                }}>
-                {navItem.label}
-              </Link>
+              <NextLink href={navItem.href ?? '#'} shallow={true} passHref>
+                <Link
+                  p={2}
+                  fontSize={'sm'}
+                  fontWeight={500}
+                  color={linkColor}
+                  _hover={{
+                    textDecoration: 'none',
+                    color: linkHoverColor
+                  }}>
+                  {navItem.label}
+                </Link>
+              </NextLink>
             </PopoverTrigger>
 
             {navItem.children && (
@@ -177,35 +183,38 @@ const DesktopNav = () => {
 
 const DesktopSubNav = ({label, href, subLabel}) => {
   return (
-    <Link
-      href={href}
-      role={'group'}
-      display={'block'}
-      p={2}
-      rounded={'md'}
-      _hover={{bg: useColorModeValue('pink.50', 'gray.900')}}>
-      <Stack direction={'row'} align={'center'}>
-        <Box>
-          <Text
+    <NextLink href={href} shallow={true} passHref>
+      <Link
+        href={href}
+        role={'group'}
+        display={'block'}
+        p={2}
+        rounded={'md'}
+        _hover={{bg: useColorModeValue('pink.50', 'gray.900')}}
+      >
+        <Stack direction={'row'} align={'center'}>
+          <Box>
+            <Text
+              transition={'all .3s ease'}
+              _groupHover={{color: 'pink.400'}}
+              fontWeight={500}>
+              {label}
+            </Text>
+            <Text fontSize={'sm'}>{subLabel}</Text>
+          </Box>
+          <Flex
             transition={'all .3s ease'}
-            _groupHover={{color: 'pink.400'}}
-            fontWeight={500}>
-            {label}
-          </Text>
-          <Text fontSize={'sm'}>{subLabel}</Text>
-        </Box>
-        <Flex
-          transition={'all .3s ease'}
-          transform={'translateX(-10px)'}
-          opacity={0}
-          _groupHover={{opacity: '100%', transform: 'translateX(0)'}}
-          justify={'flex-end'}
-          align={'center'}
-          flex={1}>
-          <Icon color={'pink.400'} w={5} h={5} as={ChevronRightIcon}/>
-        </Flex>
-      </Stack>
-    </Link>
+            transform={'translateX(-10px)'}
+            opacity={0}
+            _groupHover={{opacity: '100%', transform: 'translateX(0)'}}
+            justify={'flex-end'}
+            align={'center'}
+            flex={1}>
+            <Icon color={'pink.400'} w={5} h={5} as={ChevronRightIcon}/>
+          </Flex>
+        </Stack>
+      </Link>
+    </NextLink>
   );
 };
 
@@ -262,9 +271,18 @@ const MobileNavItem = ({label, children, href}) => {
           align={'start'}>
           {children &&
           children.map((child) => (
-            <Link key={child.label} py={2} href={child.href}>
-              {child.label}
-            </Link>
+            <NextLink
+              key={child.label}
+              href={child.href}
+              shallow={true}
+              passHref
+            >
+              <Link
+                py={2}
+              >
+                {child.label}
+              </Link>
+            </NextLink>
           ))}
         </Stack>
       </Collapse>
