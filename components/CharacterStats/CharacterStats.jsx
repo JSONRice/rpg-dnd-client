@@ -49,7 +49,7 @@ export const CharacterStats = ({character}) => {
           <Thead>
             <Tr>
               {
-                abilities.map(({name}, i) => (
+                abilities?.map(({name}, i) => (
                   <Th key={`ability-th-${i}`}>
                     <Tooltip
                       key={`ability-tip-${i}`}
@@ -66,7 +66,7 @@ export const CharacterStats = ({character}) => {
           <Tbody>
             <Tr>
               {
-                abilities.map(({stat}, i) => (
+                abilities?.map(({stat}, i) => (
                   <Td key={`ability-td-${i}`} isNumeric>
                     <CenteredSpan>{stat}</CenteredSpan>
                   </Td>
