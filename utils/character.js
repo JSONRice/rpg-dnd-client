@@ -92,5 +92,7 @@ export const characterUtils = {
         skills: formatSkills(skills)
       }
     }
+
+    return new Object()
   }
 }

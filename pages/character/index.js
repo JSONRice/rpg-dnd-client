@@ -2,7 +2,7 @@ import {Divider} from '@chakra-ui/react'
 import {useRouter} from 'next/router'
 import React from 'react'
 import {CharacterStats} from '../../components/CharacterStats'
-import { Summary } from '../../components/CharacterSummary'
+import {Summary} from '../../components/CharacterSummary'
 import {DndAccordion} from '../../components/DndAccordion'
 import {SkillStats} from '../../components/SkillStats'
 import {SpecialStats} from '../../components/SpecialStats'
@@ -22,7 +22,7 @@ export default function Character() {
 
   React.useEffect(() => {
     if (!isLoggedIn) {
-      router.push('/', undefined, { shallow: true })
+      router.push('/', undefined, {shallow: true})
     }
   })
 
@@ -51,12 +51,12 @@ export default function Character() {
 
   return (
     <>
-    {/*<Summary*/}
-    {/*  characterConditions={characterConditions}*/}
-    {/*  weatherConditions={weatherConditions}*/}
-    {/*  hp={hp}*/}
-    {/*  name={"Legolas"}*/}
-    {/*/>*/}
+      {/*<Summary*/}
+      {/*  characterConditions={characterConditions}*/}
+      {/*  weatherConditions={weatherConditions}*/}
+      {/*  hp={hp}*/}
+      {/*  name={"Legolas"}*/}
+      {/*/>*/}
 
       <>
         <DndAccordion title={<Title>{name}</Title>}>
