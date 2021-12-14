@@ -62,7 +62,9 @@ export default function Character() {
         <DndAccordion title={<Title>{name}</Title>}>
           {races}
           <Divider/>
-          <CharacterStats character={parsedCharacter}/>
+          {
+            parsedCharacter && <CharacterStats character={parsedCharacter}/>
+          }
           <Divider/>
         </DndAccordion>
         <DndAccordion title={<Title>Skills</Title>}>
