@@ -284,8 +284,8 @@ const MobileNavItem = ({label, children, href}) => {
             >
               <Link
                 onClick={() => {
-                  console.log(navItem.href)
-                  console.log(navItem.label)
+                  console.log(child.label)
+                  console.log(child.label)
                   debugger;
                 }}
                 py={2}
