@@ -5,11 +5,12 @@ import {MapImage} from "../../components";
 
 export default function Map() {
   const router = useRouter()
-  let {state: {isLoggedIn}} = React.useContext(context);
+  let {state} = React.useContext(context);
 
   React.useEffect(() => {
     debugger;
-    if (!isLoggedIn) {
+    console.log(JSON.stringify(state))
+    if (!state.isLoggedIn) {
       router.push('/', undefined, {shallow: true}).then(r =>{
         debugger
         console.log(r)

@@ -279,6 +279,7 @@ const MobileNavItem = ({label, children, href}) => {
             <NextLink
               key={child.label}
               href={child.href}
+              shallow={true}
               passHref
             >
               <Link
