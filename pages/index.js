@@ -57,10 +57,7 @@ export default function Login() {
         onSubmit={(values, actions) => {
           const { username, password } = values
           apiUtils.authenticate(username.toLowerCase(), password)
-            .then(data => {
-              debugger
-              return data.json()
-            })
+            .then(data => data.json())
             .then(character => {
               dispatch({
                 type: SET_IS_LOGGED_IN,

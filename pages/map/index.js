@@ -9,7 +9,7 @@ export default function Map() {
 
   React.useEffect(() => {
     console.log(JSON.stringify(state))
-    console.trace()
+    // console.trace()
     if (!state.isLoggedIn) {
       router.push('/', undefined, {shallow: true})
      }

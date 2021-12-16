@@ -1,3 +1,6 @@
-export { RpgProvider } from './RpgProvider'
+// export { RpgProvider } from './RpgProvider'
 export { context } from './RpgProvider'
 export { useRpgContext} from './RpgProvider'
+export { reducer } from './RpgProvider'
+export { initialState } from './RpgProvider'
+export { Provider } from './RpgProvider'

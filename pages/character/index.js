@@ -22,7 +22,7 @@ export default function Character() {
 
   let {character, isLoggedIn} = state
   console.log(JSON.stringify(state))
-  console.trace()
+  // console.trace()
 
   React.useEffect(() => {
     console.log('character useEffect ', isLoggedIn)

@@ -7,6 +7,8 @@ import {
 import {initialState} from './initialState'
 import React, {createContext, useReducer, useContext} from 'react'
 
+console.log('RpgProvider loading...')
+
 const context = createContext()
 const {Provider} = context
 
@@ -16,7 +18,7 @@ const reducer = (state = initialState, action) => {
   let {payload, type} = action
 
   console.log('reducing: ', type)
-  console.trace()
+  // console.trace()
 
   switch (type) {
     case ADD_CHAT_MESSAGE:
@@ -82,21 +84,9 @@ const reducer = (state = initialState, action) => {
   }
 }
 
-const RpgProvider = ({children}) => {
-  const [state, dispatch] = useReducer(reducer, initialState)
-
-  console.log('RpgProvider')
-
-  return (
-    <Provider value={{state, dispatch}}>
-      {children}
-    </Provider>
-  )
-}
-
 function useRpgContext() {
   return useContext(context);
 }
 
 
-export {context, RpgProvider, useRpgContext}
+export {context, initialState, reducer, useRpgContext, Provider}

@@ -1,17 +1,25 @@
-import React from 'react'
+import * as React from 'react'
 import '../styles/globals.css'
 import theme from '../styles/theme'
 import {ChakraProvider, CSSReset} from '@chakra-ui/react'
 import {NavBar} from '../components'
-import {RpgProvider, useRpgContext} from "../context/providers"
+import {reducer, initialState, Provider} from "../context/providers"
+
+const RpgProvider = ({children}) => {
+  const [state, dispatch] = React.useReducer(reducer, initialState)
+  console.log('RpgProvider state: ', JSON.stringify(state))
+
+
+  console.log('RpgProvider')
+
+  return (
+    <Provider value={{state, dispatch}}>
+      {children}
+    </Provider>
+  )
+}
 
 function MyApp({Component, pageProps}) {
-  const { state = {}} = useRpgContext()
-
-  if (state && Object.keys(state).length > 0){
-    console.log('MyApp has rendered: ', JSON.stringify(state.character))
-  }
-
   return (
     <RpgProvider>
       <ChakraProvider theme={theme}>
