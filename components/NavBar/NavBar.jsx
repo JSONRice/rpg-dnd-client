@@ -1,9 +1,9 @@
 import React from 'react'
-import NextLink from 'next/link'
+import Link from 'next/link'
 import {
   Box,
   Flex,
-  Link,
+  // Link,
   Text,
   IconButton,
   Button,
@@ -23,8 +23,6 @@ import {
   ChevronDownIcon,
   ChevronRightIcon
 } from '@chakra-ui/icons';
-
-// import NextLink from 'next/link'
 
 // See: https://chakra-templates.dev/navigation/navbar
 const NAV_ITEMS = [
@@ -146,24 +144,26 @@ const DesktopNav = () => {
         <Box key={navItem.label}>
           <Popover trigger={'hover'} placement={'bottom-start'}>
             <PopoverTrigger>
-              <NextLink href={navItem.href ?? '#'} shallow={true} passHref>
-                <Link
-                  onClick={() => {
-                    console.log(navItem.href)
-                    console.log(navItem.label)
-                    debugger;
-                  }}
-                  p={2}
-                  fontSize={'sm'}
-                  fontWeight={500}
-                  color={linkColor}
-                  _hover={{
-                    textDecoration: 'none',
-                    color: linkHoverColor
-                  }}>
-                  {navItem.label}
-                </Link>
-              </NextLink>
+              <Link href={navItem.href ?? '#'} shallow={true} passHref>
+                {/*<Link*/}
+                {/*  onClick={() => {*/}
+                {/*    console.log(navItem.href)*/}
+                {/*    console.log(navItem.label)*/}
+                {/*    debugger;*/}
+                {/*  }}*/}
+                {/*  p={2}*/}
+                {/*  fontSize={'sm'}*/}
+                {/*  fontWeight={500}*/}
+                {/*  color={linkColor}*/}
+                {/*  _hover={{*/}
+                {/*    textDecoration: 'none',*/}
+                {/*    color: linkHoverColor*/}
+                {/*  }}>*/}
+                  <button>
+                    {navItem.label}
+                  </button>
+                {/*</Link>*/}
+              </Link>
             </PopoverTrigger>
 
             {navItem.children && (
@@ -190,38 +190,38 @@ const DesktopNav = () => {
 
 const DesktopSubNav = ({label, href, subLabel}) => {
   return (
-    <NextLink href={href} shallow={true} passHref>
-      <Link
-        href={href}
-        role={'group'}
-        display={'block'}
-        p={2}
-        rounded={'md'}
-        _hover={{bg: useColorModeValue('pink.50', 'gray.900')}}
-      >
-        <Stack direction={'row'} align={'center'}>
-          <Box>
-            <Text
-              transition={'all .3s ease'}
-              _groupHover={{color: 'pink.400'}}
-              fontWeight={500}>
-              {label}
-            </Text>
-            <Text fontSize={'sm'}>{subLabel}</Text>
-          </Box>
-          <Flex
-            transition={'all .3s ease'}
-            transform={'translateX(-10px)'}
-            opacity={0}
-            _groupHover={{opacity: '100%', transform: 'translateX(0)'}}
-            justify={'flex-end'}
-            align={'center'}
-            flex={1}>
-            <Icon color={'pink.400'} w={5} h={5} as={ChevronRightIcon}/>
-          </Flex>
-        </Stack>
-      </Link>
-    </NextLink>
+    <Link href={href} shallow={true} passHref>
+      {/*<Link*/}
+      {/*  href={href}*/}
+      {/*  role={'group'}*/}
+      {/*  display={'block'}*/}
+      {/*  p={2}*/}
+      {/*  rounded={'md'}*/}
+      {/*  _hover={{bg: useColorModeValue('pink.50', 'gray.900')}}*/}
+      {/*>*/}
+      {/*  <Stack direction={'row'} align={'center'}>*/}
+      {/*    <Box>*/}
+      {/*      <Text*/}
+      {/*        transition={'all .3s ease'}*/}
+      {/*        _groupHover={{color: 'pink.400'}}*/}
+      {/*        fontWeight={500}>*/}
+      {/*        {label}*/}
+      {/*      </Text>*/}
+      {/*      <Text fontSize={'sm'}>{subLabel}</Text>*/}
+      {/*    </Box>*/}
+      {/*    <Flex*/}
+      {/*      transition={'all .3s ease'}*/}
+      {/*      transform={'translateX(-10px)'}*/}
+      {/*      opacity={0}*/}
+      {/*      _groupHover={{opacity: '100%', transform: 'translateX(0)'}}*/}
+      {/*      justify={'flex-end'}*/}
+      {/*      align={'center'}*/}
+      {/*      flex={1}>*/}
+      {/*      <Icon color={'pink.400'} w={5} h={5} as={ChevronRightIcon}/>*/}
+      {/*    </Flex>*/}
+      {/*  </Stack>*/}
+      {/*</Link>*/}
+    </Link>
   );
 };
 
@@ -278,23 +278,25 @@ const MobileNavItem = ({label, children, href}) => {
           align={'start'}>
           {children &&
           children.map((child) => (
-            <NextLink
+            <Link
               key={child.label}
               href={child.href}
               shallow={true}
               passHref
             >
-              <Link
-                onClick={() => {
-                  console.log(child.label)
-                  console.log(child.label)
-                  debugger;
-                }}
-                py={2}
-              >
+              {/*<Link*/}
+              {/*  onClick={() => {*/}
+              {/*    console.log(child.label)*/}
+              {/*    console.log(child.label)*/}
+              {/*    debugger;*/}
+              {/*  }}*/}
+              {/*  py={2}*/}
+              {/*>*/}
+              <button>
                 {child.label}
-              </Link>
-            </NextLink>
+              </button>
+              {/*</Link>*/}
+            </Link>
           ))}
         </Stack>
       </Collapse>
