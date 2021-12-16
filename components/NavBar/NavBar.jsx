@@ -22,7 +22,8 @@ import {
   ChevronDownIcon,
   ChevronRightIcon
 } from '@chakra-ui/icons';
-import NextLink from 'next/link'
+import * as Next from 'next/link'
+// import NextLink from 'next/link'
 
 // See: https://chakra-templates.dev/navigation/navbar
 const NAV_ITEMS = [
@@ -144,7 +145,7 @@ const DesktopNav = () => {
         <Box key={navItem.label}>
           <Popover trigger={'hover'} placement={'bottom-start'}>
             <PopoverTrigger>
-              <NextLink href={navItem.href ?? '#'} shallow={true} passHref>
+              <Next.Link href={navItem.href ?? '#'} shallow={true} passHref>
                 <Link
                   onClick={() => {
                     console.log(navItem.href)
@@ -161,7 +162,7 @@ const DesktopNav = () => {
                   }}>
                   {navItem.label}
                 </Link>
-              </NextLink>
+              </Next.Link>
             </PopoverTrigger>
 
             {navItem.children && (
@@ -188,7 +189,7 @@ const DesktopNav = () => {
 
 const DesktopSubNav = ({label, href, subLabel}) => {
   return (
-    <NextLink href={href} shallow={true} passHref>
+    <Next.Link href={href} shallow={true} passHref>
       <Link
         href={href}
         role={'group'}
@@ -219,7 +220,7 @@ const DesktopSubNav = ({label, href, subLabel}) => {
           </Flex>
         </Stack>
       </Link>
-    </NextLink>
+    </Next.Link>
   );
 };
 
