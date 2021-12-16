@@ -1,5 +1,3 @@
-import { monsters } from '../data'
-
 export const initialState = {
   character: {},
   username: '',
@@ -7,6 +5,6 @@ export const initialState = {
   images:[],
   isLoggedIn: false,
   isConnected: false,
-  monsters,
+  monsters: {},
   totalSkills: 10
 }

@@ -15,6 +15,9 @@ const msgValid = msg => msg && typeof msg === 'object'
 const reducer = (state, action) => {
   let {payload, type} = action
 
+  console.log('reducing: ', type)
+  console.trace()
+
   switch (type) {
     case ADD_CHAT_MESSAGE:
       const {msg: chatMsg} = payload
