@@ -6,8 +6,12 @@ import {NavBar} from '../components'
 import {RpgProvider, useRpgContext} from "../context/providers"
 
 function MyApp({Component, pageProps}) {
-  const { state} = useRpgContext()
-  console.log('MyApp has rendered: ', JSON.stringify(state.character))
+  const { state = {}} = useRpgContext()
+
+  if (Object.keys(state).length > 0){
+    console.log('MyApp has rendered: ', JSON.stringify(state.character))
+  }
+
   return (
     <RpgProvider>
       <ChakraProvider theme={theme}>
