@@ -1,5 +1,5 @@
-import {useRouter, userRouter} from 'next/router'
-import React, {useContext} from "react";
+import {useRouter} from 'next/router'
+import * as React from "react";
 import {context} from "../../context/providers";
 import {MapImage} from "../../components";
 
@@ -8,13 +8,10 @@ export default function Map() {
   let {state} = React.useContext(context);
 
   React.useEffect(() => {
-    debugger;
     console.log(JSON.stringify(state))
+    console.trace()
     if (!state.isLoggedIn) {
-      router.push('/', undefined, {shallow: true}).then(r =>{
-        debugger
-        console.log(r)
-      })
+      router.push('/', undefined, {shallow: true})
      }
   })
 
