@@ -144,7 +144,11 @@ const DesktopNav = () => {
         <Box key={navItem.label}>
           <Popover trigger={'hover'} placement={'bottom-start'}>
             <PopoverTrigger>
-              <NextLink href={navItem.href ?? '#'} shallow={true} passHref>
+              <NextLink onClick={() => {
+                console.log(navItem.href)
+                console.log(navItem.label)
+                debugger;
+              }} href={navItem.href ?? '#'} shallow={true} passHref>
                 <Link
                   p={2}
                   fontSize={'sm'}
