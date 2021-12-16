@@ -8,7 +8,7 @@ import {RpgProvider, useRpgContext} from "../context/providers"
 function MyApp({Component, pageProps}) {
   const { state = {}} = useRpgContext()
 
-  if (Object.keys(state).length > 0){
+  if (state && Object.keys(state).length > 0){
     console.log('MyApp has rendered: ', JSON.stringify(state.character))
   }
 
