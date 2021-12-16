@@ -6,6 +6,7 @@ import {NavBar} from '../components'
 import {RpgProvider} from "../context/providers"
 
 function MyApp({Component, pageProps}) {
+  console.log('MyApp has rendered')
   return (
     <RpgProvider>
       <ChakraProvider theme={theme}>

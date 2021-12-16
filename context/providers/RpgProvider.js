@@ -12,7 +12,7 @@ const {Provider} = context
 
 const msgValid = msg => msg && typeof msg === 'object'
 
-const reducer = (state, action) => {
+const reducer = (state = initialState, action) => {
   let {payload, type} = action
 
   console.log('reducing: ', type)
@@ -84,6 +84,8 @@ const reducer = (state, action) => {
 
 const RpgProvider = ({children}) => {
   const [state, dispatch] = useReducer(reducer, initialState)
+
+  console.log('RpgProvider')
 
   return (
     <Provider value={{state, dispatch}}>
