@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link as NextLink } from 'next/link'
 import {
   Box,
   Flex,
@@ -22,7 +23,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon
 } from '@chakra-ui/icons';
-import * as Next from 'next/link'
+
 // import NextLink from 'next/link'
 
 // See: https://chakra-templates.dev/navigation/navbar
@@ -145,7 +146,7 @@ const DesktopNav = () => {
         <Box key={navItem.label}>
           <Popover trigger={'hover'} placement={'bottom-start'}>
             <PopoverTrigger>
-              <Next.Link href={navItem.href ?? '#'} shallow={true} passHref>
+              <NextLink href={navItem.href ?? '#'} shallow={true} passHref>
                 <Link
                   onClick={() => {
                     console.log(navItem.href)
@@ -162,7 +163,7 @@ const DesktopNav = () => {
                   }}>
                   {navItem.label}
                 </Link>
-              </Next.Link>
+              </NextLink>
             </PopoverTrigger>
 
             {navItem.children && (
@@ -189,7 +190,7 @@ const DesktopNav = () => {
 
 const DesktopSubNav = ({label, href, subLabel}) => {
   return (
-    <Next.Link href={href} shallow={true} passHref>
+    <NextLink href={href} shallow={true} passHref>
       <Link
         href={href}
         role={'group'}
@@ -220,7 +221,7 @@ const DesktopSubNav = ({label, href, subLabel}) => {
           </Flex>
         </Stack>
       </Link>
-    </Next.Link>
+    </NextLink>
   );
 };
 
