@@ -283,6 +283,11 @@ const MobileNavItem = ({label, children, href}) => {
               passHref
             >
               <Link
+                onClick={() => {
+                  console.log(navItem.href)
+                  console.log(navItem.label)
+                  debugger;
+                }}
                 py={2}
               >
                 {child.label}
