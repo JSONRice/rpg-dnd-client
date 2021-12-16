@@ -5,9 +5,10 @@ import {
   SET_IMAGE, SET_IS_LOGGED_IN
 } from '../types/rpg-types'
 import {initialState} from './initialState'
-import React, {createContext, useReducer, useContext} from 'react'
+import React, {createContext, useContext} from 'react'
 
 console.log('RpgProvider loading...')
+console.trace()
 
 const context = createContext()
 const {Provider} = context

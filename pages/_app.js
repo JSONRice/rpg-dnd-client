@@ -20,6 +20,7 @@ const RpgProvider = ({children}) => {
 }
 
 function MyApp({Component, pageProps}) {
+
   return (
     <RpgProvider>
       <ChakraProvider theme={theme}>
