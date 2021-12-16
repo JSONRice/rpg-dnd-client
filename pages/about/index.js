@@ -1,7 +1,7 @@
 import {useRouter} from 'next/router'
 import React from 'react'
 import styled from '@emotion/styled'
-import {context} from '../../context/providers'
+import {context, useRpgContext} from '../../context/providers'
 
 const InnerDiv = styled.div`
   width: 600px;
@@ -9,7 +9,7 @@ const InnerDiv = styled.div`
 
 export default function About() {
   const router = useRouter()
-  let {state} = React.useContext(context);
+  let {state} = useRpgContext()
 
   React.useEffect(() => {
     if (!state.isLoggedIn) {

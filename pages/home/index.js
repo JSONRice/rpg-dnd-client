@@ -2,14 +2,14 @@ import {useRouter} from 'next/router'
 import React, {useState} from 'react'
 import Head from 'next/head'
 import {Badge} from "@chakra-ui/react"
-import {context} from '../../context/providers'
+import {useRpgContext} from '../../context/providers'
 import {apiUtils} from '../../utils'
 
 export default function Home() {
   const router = useRouter()
   const [spell, setSpell] = useState("")
   const [data, setData] = useState()
-  let {state} = React.useContext(context);
+  let {state} = useRpgContext()
 
   React.useEffect(() => {
     if (!state.isLoggedIn) {

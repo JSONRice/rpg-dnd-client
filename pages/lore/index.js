@@ -1,11 +1,11 @@
 import {useRouter} from 'next/router'
 import * as React from 'react'
 import {SkillTable} from '../../components'
-import {context} from '../../context/providers'
+import {useRpgContext} from '../../context/providers'
 
 export default function Lore() {
   const router = useRouter()
-  let {state} = React.useContext(context);
+  let {state} = useRpgContext()
   const { isLoggedIn } = state
 
   React.useEffect(() => {

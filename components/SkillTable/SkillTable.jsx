@@ -1,9 +1,9 @@
-import React, {useContext} from 'react'
-import {context} from "../../context/providers";
+import React from 'react'
+import {useRpgContext} from "../../context/providers"
 
 export const SkillTable = () => {
-  const {state} = useContext(context);
-  const {character: {skills}} = state;
+  const {state} = useRpgContext()
+  const {character: {skills}} = state
 
   return (
     <div>

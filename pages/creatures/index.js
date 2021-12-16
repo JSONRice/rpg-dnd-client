@@ -7,7 +7,7 @@ import {DndAccordion} from '../../components/DndAccordion'
 import {SkillStats} from '../../components/SkillStats'
 import {SpecialStats} from '../../components/SpecialStats'
 import {SpellStats} from '../../components/SpellStats'
-import {context} from '../../context/providers'
+import {useRpgContext} from '../../context/providers'
 import {characterUtils} from '../../utils'
 
 const Title = ({children}) => (
@@ -18,7 +18,7 @@ const Title = ({children}) => (
 
 export default function Character() {
   const router = useRouter()
-  let {state: {monsters, isLoggedIn}} = React.useContext(context);
+  let {state: {monsters, isLoggedIn}} = useRpgContext()
 
   React.useEffect(() => {
     if (!isLoggedIn) {

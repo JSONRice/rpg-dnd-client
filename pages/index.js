@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {context} from '../context/providers'
+import {useRpgContext} from '../context/providers'
 import styled from '@emotion/styled'
 import {SET_IS_LOGGED_IN} from '../context/types/rpg-types'
 import {apiUtils} from '../utils'
@@ -23,7 +23,7 @@ const CenteredDiv = styled.div`
 export default function Login() {
 
   const router = useRouter()
-  let {state: {isLoggedIn}, dispatch} = React.useContext(context);
+  let {state: {isLoggedIn}, dispatch} = useRpgContext()
   const [show, setShow] = React.useState(false)
   const showPassword = () => setShow(!show)
 

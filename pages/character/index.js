@@ -7,7 +7,7 @@ import {DndAccordion} from '../../components/DndAccordion'
 import {SkillStats} from '../../components/SkillStats'
 import {SpecialStats} from '../../components/SpecialStats'
 import {SpellStats} from '../../components/SpellStats'
-import {context} from '../../context/providers'
+import {useRpgContext} from '../../context/providers'
 import {characterUtils} from '../../utils'
 
 const Title = ({children}) => (
@@ -18,7 +18,8 @@ const Title = ({children}) => (
 
 export default function Character() {
   const router = useRouter()
-  let {state} = React.useContext(context)
+  let {state} = useRpgContext()
+
   let {character, isLoggedIn} = state
   console.log(JSON.stringify(state))
   console.trace()

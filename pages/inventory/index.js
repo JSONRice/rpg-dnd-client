@@ -1,11 +1,11 @@
 import {useRouter} from 'next/router'
 import React, {useEffect, useState} from 'react'
-import {context} from '../../context/providers'
+import {context, useRpgContext} from '../../context/providers'
 
 export default function Inventory() {
 
   const router = useRouter()
-  let {state: {isLoggedIn}} = React.useContext(context);
+  let {state: {isLoggedIn}} = useRpgContext()
 
   useEffect(() => {
     if (!isLoggedIn) {

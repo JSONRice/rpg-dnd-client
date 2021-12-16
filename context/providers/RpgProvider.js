@@ -94,4 +94,9 @@ const RpgProvider = ({children}) => {
   )
 }
 
-export {context, RpgProvider}
+function useRpgContext() {
+  return useContext(context);
+}
+
+
+export {context, RpgProvider, useRpgContext}

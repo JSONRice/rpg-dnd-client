@@ -1,11 +1,11 @@
 import {useRouter} from 'next/router'
 import * as React from "react";
-import {context} from "../../context/providers";
+import {context, useRpgContext} from "../../context/providers";
 import {MapImage} from "../../components";
 
 export default function Map() {
   const router = useRouter()
-  let {state} = React.useContext(context);
+  let {state} = useRpgContext()
 
   React.useEffect(() => {
     console.log(JSON.stringify(state))
