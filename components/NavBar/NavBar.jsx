@@ -144,7 +144,7 @@ const DesktopNav = () => {
         <Box key={navItem.label}>
           <Popover trigger={'hover'} placement={'bottom-start'}>
             <PopoverTrigger>
-              <NextLink href={navItem.href ?? '#'} passHref>
+              <NextLink href={navItem.href ?? '#'} passHref shallow={true}>
                 <Link
                   onClick={() => {
                     console.log(navItem.href)
@@ -188,7 +188,7 @@ const DesktopNav = () => {
 
 const DesktopSubNav = ({label, href, subLabel}) => {
   return (
-    <NextLink href={href} passHref>
+    <NextLink href={href} passHref shallow={true}>
       <Link
         href={href}
         role={'group'}
@@ -279,6 +279,7 @@ const MobileNavItem = ({label, children, href}) => {
             <NextLink
               key={child.label}
               href={child.href}
+              shallow={true}
               passHref
             >
               <Link

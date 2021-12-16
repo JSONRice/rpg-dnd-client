@@ -44,7 +44,7 @@ export default function Login() {
   }
 
   if (isLoggedIn) {
-    router.push('/character')
+    router.push('/character', undefined, { shallow: true })
   }
 
   return (
