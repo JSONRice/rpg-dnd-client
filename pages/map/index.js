@@ -7,7 +7,8 @@ export default function Map() {
   const router = useRouter()
   let {state: {isLoggedIn}} = React.useContext(context);
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
+    debugger;
     if (!isLoggedIn) {
       router.push('/', undefined, { shallow: true })
     }
