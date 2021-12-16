@@ -1,7 +1,8 @@
 import { createContext } from 'react';
 
 export function initializeStore(initialState = {}) {
-  return createContext(
-    initialState,
-  );
+  // TODO: use this later with Jest for unit testing
+  // return createContext(
+  //   initialState,
+  // );
 }
