@@ -1,8 +1,12 @@
 import React from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import {useRpgContext} from "../../context/providers"
 
 export const SkillTable = () => {
-  const {state} = useRpgContext()
+
+  // TODO: prove
+  const state= useSelector(state => state?.game)
+  // const {state} = useRpgContext()
   const {character: {skills}} = state
 
   return (

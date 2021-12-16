@@ -1,23 +1,27 @@
 import * as React from 'react'
 import '../styles/globals.css'
+import {initializeStore} from '../redux/initRedux'
 import theme from '../styles/theme'
 import {ChakraProvider, CSSReset} from '@chakra-ui/react'
 import {NavBar} from '../components'
-import {reducer, initialState, Provider} from "../context/providers"
+import {reducer, initialState} from "../context/providers"
+import {Provider} from "react-redux"
 
 const RpgProvider = ({children}) => {
-  const [state, dispatch] = React.useReducer(reducer, initialState)
-  console.log('RpgProvider state: ', JSON.stringify(state))
-
-
-  console.log('RpgProvider')
-
   return (
-    <Provider value={{state, dispatch}}>
+    <Provider store={initializeStore()}>
       {children}
     </Provider>
   )
 }
+
+// <RpgProvider>
+//   <ChakraProvider theme={theme}>
+//     <CSSReset/>
+//     <NavBar/>
+//     <Component {...pageProps} />
+//   </ChakraProvider>
+// </RpgProvider>
 
 function MyApp({Component, pageProps}) {
 

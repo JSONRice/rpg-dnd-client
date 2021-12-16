@@ -1,4 +1,5 @@
 import * as React from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import {useRpgContext} from '../context/providers'
 import styled from '@emotion/styled'
 import {SET_IS_LOGGED_IN} from '../context/types/rpg-types'
@@ -7,10 +8,6 @@ import {useRouter} from 'next/router'
 import {Input, FormControl, FormLabel, Button, FormErrorMessage, InputGroup, InputRightElement} from '@chakra-ui/react'
 import {Formik, Form, Field} from 'formik';
 
-const Error = styled.span`
-  color: red;
-  font-weight: bold;
-`
 const CenteredDiv = styled.div`
   display: flex;
   min-height: 50vh;
@@ -23,7 +20,15 @@ const CenteredDiv = styled.div`
 export default function Login() {
 
   const router = useRouter()
-  let {state: {isLoggedIn}, dispatch} = useRpgContext()
+
+  // TODO: prove
+  const state = useSelector(state => state?.game)
+  console.log('state: ', JSON.stringify(state))
+
+  const { isLoggedIn } = state
+  // let {state: {isLoggedIn}, dispatch} = useRpgContext()
+  const dispatch = useDispatch()
+
   const [show, setShow] = React.useState(false)
   const showPassword = () => setShow(!show)
 
@@ -43,9 +48,11 @@ export default function Login() {
     return error
   }
 
-  if (isLoggedIn) {
-    router.push('/character', undefined, { shallow: true })
-  }
+  React.useEffect(() => {
+    if (isLoggedIn) {
+      router.push('/character', undefined, { shallow: true })
+    }
+  })
 
   return (
     <CenteredDiv>

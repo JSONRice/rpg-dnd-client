@@ -1,11 +1,15 @@
 import {useRouter} from 'next/router'
 import * as React from "react";
+import {useSelector} from 'react-redux'
 import {context, useRpgContext} from "../../context/providers";
 import {MapImage} from "../../components";
 
 export default function Map() {
   const router = useRouter()
-  let {state} = useRpgContext()
+
+  // let {state} = useRpgContext()
+  // TODO: prove
+  const state = useSelector(state => state?.game)
 
   React.useEffect(() => {
     console.log(JSON.stringify(state))

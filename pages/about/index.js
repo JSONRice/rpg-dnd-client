@@ -1,6 +1,7 @@
 import {useRouter} from 'next/router'
 import React from 'react'
 import styled from '@emotion/styled'
+import {useSelector} from 'react-redux'
 import {context, useRpgContext} from '../../context/providers'
 
 const InnerDiv = styled.div`
@@ -9,7 +10,9 @@ const InnerDiv = styled.div`
 
 export default function About() {
   const router = useRouter()
-  let {state} = useRpgContext()
+  // let {state} = useRpgContext()
+  // TODO: prove
+  const state = useSelector(state => state?.game)
 
   React.useEffect(() => {
     if (!state.isLoggedIn) {

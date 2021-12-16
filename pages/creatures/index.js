@@ -1,6 +1,7 @@
 import {Divider} from '@chakra-ui/react'
 import {useRouter} from 'next/router'
 import React from 'react'
+import {useSelector} from 'react-redux'
 import {CharacterStats} from '../../components/CharacterStats'
 import { Summary } from '../../components/CharacterSummary'
 import {DndAccordion} from '../../components/DndAccordion'
@@ -18,7 +19,10 @@ const Title = ({children}) => (
 
 export default function Character() {
   const router = useRouter()
-  let {state: {monsters, isLoggedIn}} = useRpgContext()
+  // TODO: prove
+  const state= useSelector(state => state?.game)
+  const { monsters, isLoggedIn} = state
+  // let {state: {monsters, isLoggedIn}} = useRpgContext()
 
   React.useEffect(() => {
     if (!isLoggedIn) {
