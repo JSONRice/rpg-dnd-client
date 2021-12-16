@@ -18,9 +18,12 @@ const Title = ({children}) => (
 
 export default function Character() {
   const router = useRouter()
-  let {state: {character, isLoggedIn}} = React.useContext(context);
+  let {state} = React.useContext(context)
+  let {character, isLoggedIn} = state
+  console.log(JSON.stringify(state))
 
   React.useEffect(() => {
+    console.log('character useEffect ', isLoggedIn)
     if (!isLoggedIn) {
       router.push('/', undefined, {shallow: true})
     }
