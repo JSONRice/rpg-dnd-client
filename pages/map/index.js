@@ -10,8 +10,11 @@ export default function Map() {
   React.useEffect(() => {
     debugger;
     if (!isLoggedIn) {
-      router.push('/', undefined, { shallow: true })
-    }
+      router.push('/', undefined, {shallow: true}).then(r =>{
+        debugger
+        console.log(r)
+      })
+     }
   })
 
   return (
