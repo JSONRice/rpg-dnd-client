@@ -3,7 +3,7 @@ import '../styles/globals.css'
 import theme from '../styles/theme'
 import {ChakraProvider, CSSReset} from '@chakra-ui/react'
 import {NavBar} from '../components'
-import {reducer, initialState, Provider} from "../context/providers"
+import {reducer, initialState, AppContext} from "../context/providers"
 
 const RpgProvider = ({children}) => {
   const [state, dispatch] = React.useReducer(reducer, initialState)
@@ -13,13 +13,14 @@ const RpgProvider = ({children}) => {
   console.log('RpgProvider')
 
   return (
-    <Provider value={{state, dispatch}}>
+    <AppContext.Provider value={{state, dispatch}}>
       {children}
-    </Provider>
+    </AppContext.Provider>
   )
 }
 
 function MyApp({Component, pageProps}) {
+
 
   return (
     <RpgProvider>

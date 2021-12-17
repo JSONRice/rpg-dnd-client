@@ -10,8 +10,8 @@ import React, {createContext, useContext} from 'react'
 console.log('RpgProvider loading...')
 console.trace()
 
-const context = createContext()
-const {Provider} = context
+const AppContext = createContext()
+// const {Provider} = context
 
 const msgValid = msg => msg && typeof msg === 'object'
 
@@ -86,8 +86,12 @@ const reducer = (state = initialState, action) => {
 }
 
 function useRpgContext() {
-  return useContext(context);
+  const store = useContext(AppContext)
+  if (!store) {
+    throw ('Store is not defined')
+  }
+  return store;
 }
 
 
-export {context, initialState, reducer, useRpgContext, Provider}
+export {initialState, reducer, useRpgContext, AppContext}
