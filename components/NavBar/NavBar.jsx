@@ -2,6 +2,7 @@ import React from 'react'
 import {
   Box,
   Flex,
+  Image,
   Link,
   Text,
   IconButton,
@@ -103,12 +104,12 @@ export const NavBar = () => {
           />
         </Flex>
         <Flex flex={{base: 1}} justify={{base: 'center', md: 'start'}}>
-          <Text
-            textAlign={useBreakpointValue({base: 'center', md: 'left'})}
-            fontFamily={'heading'}
-            color={useColorModeValue('gray.800', 'white')}>
-            Logo
-          </Text>
+          <Image
+            borderRadius='full'
+            boxSize='70px'
+            src={'/dnd2.jpeg'}
+            alt={'Logo'}
+          />
 
           <Flex display={{base: 'none', md: 'flex'}} ml={10}>
             <DesktopNav/>
