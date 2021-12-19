@@ -10,12 +10,8 @@ export default function Map() {
   React.useEffect(() => {
     if (!state.isLoggedIn) {
       router.push('/', undefined, {shallow: true})
-     }
+    }
   })
 
-  return (
-    <div>
-      <MapImage title="The Shire"/>
-    </div>
-  );
+  return <MapImage title="The Shire"/>
 }
