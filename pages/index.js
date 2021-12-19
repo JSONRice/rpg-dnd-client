@@ -61,9 +61,16 @@ export default function Login() {
           apiUtils.authenticate(username.toLowerCase(), password)
             .then(data => data.json())
             .then(character => {
+              let error
+              if (!character || Object.keys(character).length === 0) {
+                error = 'Requested user not found. Please check username/password.'
+                actions.setFieldError('password', error)
+                actions.setSubmitting(false)
+              }
+
               dispatch({
                 type: SET_IS_LOGGED_IN,
-                payload: {character}
+                payload: {character, error}
               })
             })
             .catch(console.error)

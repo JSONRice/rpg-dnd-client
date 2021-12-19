@@ -39,7 +39,7 @@ const reducer = (state = initialState, action) => {
     case SET_IS_LOGGED_IN:
 
       let { character, error } = payload
-      let isLoggedIn = character && Object.keys(character).length > 0 && !error
+      let isLoggedIn = !error && character && Object.keys(character).length > 0
 
       if (!isLoggedIn) {
         character = null
