@@ -2,13 +2,13 @@ import {Divider} from '@chakra-ui/react'
 import {useRouter} from 'next/router'
 import React from 'react'
 import {CharacterStats} from '../../components/CharacterStats'
-import {Summary} from '../../components/CharacterSummary'
 import {DndAccordion} from '../../components/DndAccordion'
 import {SkillStats} from '../../components/SkillStats'
 import {SpecialStats} from '../../components/SpecialStats'
 import {SpellStats} from '../../components/SpellStats'
 import {useRpgContext} from '../../context/providers'
 import {characterUtils} from '../../utils'
+import NextLink from 'next/link'
 
 const Title = ({children}) => (
   <div>
@@ -81,6 +81,9 @@ export default function Character() {
         <DndAccordion title={<Title>Spells</Title>}>
           <SpellStats character={parsedCharacter}/>
         </DndAccordion>
+        <NextLink href={'/map'} passHref shallow={true}>
+          <h4>To Maps</h4>
+        </NextLink>
       </>
     </>
   )

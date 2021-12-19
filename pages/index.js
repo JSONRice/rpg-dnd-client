@@ -43,9 +43,12 @@ export default function Login() {
     return error
   }
 
-  if (isLoggedIn) {
-    router.push('/character', undefined, { shallow: true })
-  }
+  React.useEffect(() => {
+    console.log('login useEffect ', isLoggedIn)
+    if (isLoggedIn) {
+      router.push('/character', undefined, {shallow: true})
+    }
+  })
 
   return (
     <CenteredDiv>
