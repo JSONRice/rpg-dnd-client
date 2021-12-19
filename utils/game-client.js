@@ -17,7 +17,7 @@ const _eventHandlers = {
 const messageHandler = (message) => {
   // fire the 'connect' callbacks
   let msg = JSON.parse(message.body)
-  console.log("game-client:message callback for received message")
+
   for (let listener in _eventHandlers['receive-message']) {
     listener.call(msg)
   }
@@ -26,7 +26,6 @@ const messageHandler = (message) => {
 }
 
 const connectionSuccess = (frame) => {
-  console.log(frame)
   _isConnected = true
   // register ''default' message channel listeners
   _stompClient.subscribe('/topic/chat', message => messageHandler(message))
@@ -35,13 +34,11 @@ const connectionSuccess = (frame) => {
   // fire the 'connect' callbacks to all registered connect listeners
   const event = {type: 'connect', success: true} // event details
   for (let listener of _eventHandlers['connect']) {
-    //console.log('listener', {listener})
     listener(event)
   }
 }
 
 const connectionError = (error) => {
-  console.log(error)
   _isConnected = false
 }
 
@@ -58,7 +55,6 @@ export default {
   },
 
   connect(username, password) {
-    console.log('Issuing WebSocket connect request to: ', process.env.SERVER_URI)
     _isConnected = false
     _socket = new SockJS(process.env.SERVER_URI)
     _stompClient = WebStompClient.over(_socket)

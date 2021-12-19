@@ -10,7 +10,7 @@ const messageHandler = (message) => {
   // fire the 'connect' callbacks
   const gameMessage = JSON.parse(message.body);
   let type = gameMessage.type;
-  console.log("message-service:message callback for type :" + type);
+
   switch (type) {
     case 'party':
     case 'private':
@@ -36,7 +36,6 @@ export default {
       _stompClient.connect(
         {username, password},
         frame => {
-          console.log(frame);
           _isConnected = true;
           store.dispatch('setConnected', true);
           _stompClient.subscribe('/topic/chat', message => messageHandler(message));
@@ -44,7 +43,6 @@ export default {
           resolve();
         },
         error => {
-          console.log(error);
           _isConnected = false;
           reject();
         }
@@ -55,7 +53,6 @@ export default {
   sendMessage(msg) {
     let type = msg.type;
     let msgString = JSON.stringify(msg);
-    console.log("message-service sendMessage " + msgString);
 
     if (_stompClient && _isConnected) {
       switch (type) {

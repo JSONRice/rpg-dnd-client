@@ -7,10 +7,6 @@ import {reducer, initialState, AppContext} from "../context/providers"
 
 const RpgProvider = ({children}) => {
   const [state, dispatch] = React.useReducer(reducer, initialState)
-  console.log('RpgProvider state: ', JSON.stringify(state))
-
-
-  console.log('RpgProvider')
 
   return (
     <AppContext.Provider value={{state, dispatch}}>

@@ -21,11 +21,8 @@ export default function Character() {
   let {state} = useRpgContext()
 
   let {character, isLoggedIn} = state
-  console.log(JSON.stringify(state))
-  // console.trace()
 
   React.useEffect(() => {
-    console.log('character useEffect ', isLoggedIn)
     if (!isLoggedIn) {
       router.push('/', undefined, {shallow: true})
     }

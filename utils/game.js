@@ -12,7 +12,6 @@ There are currently five types of interactions that can occur with the server.
 
 // handler to detect a successful connected event
 gameClient.addGameEventListener('connect', (event)=>{
-  console.log(event)
   // what to do when we are connected
 
   // update the store with connected status
@@ -21,7 +20,6 @@ gameClient.addGameEventListener('connect', (event)=>{
 
 // handler to detect a successful connected event
 gameClient.addGameEventListener('receive-message', (event)=>{
-  console.log(event)
   // what to do when we send a message
 
   // update the store with connected status
@@ -33,7 +31,6 @@ export default {
     gameClient.connect(username,  password)
   },
   sendMessage(msg) {
-    console.log("game-service called with message: " + JSON.stringify(msg))
     gameClient.sendMessage(msg)
   }
 }

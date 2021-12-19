@@ -8,8 +8,6 @@ export default function Map() {
   let {state} = useRpgContext()
 
   React.useEffect(() => {
-    console.log(JSON.stringify(state))
-    // console.trace()
     if (!state.isLoggedIn) {
       router.push('/', undefined, {shallow: true})
      }

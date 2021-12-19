@@ -7,19 +7,12 @@ import {
 import {initialState} from './initialState'
 import React, {createContext, useContext} from 'react'
 
-console.log('RpgProvider loading...')
-console.trace()
-
 const AppContext = createContext()
-// const {Provider} = context
 
 const msgValid = msg => msg && typeof msg === 'object'
 
 const reducer = (state = initialState, action) => {
   let {payload, type} = action
-
-  console.log('reducing: ', type)
-  // console.trace()
 
   switch (type) {
     case ADD_CHAT_MESSAGE:
