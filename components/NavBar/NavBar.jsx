@@ -146,11 +146,6 @@ const DesktopNav = () => {
             <PopoverTrigger>
               <NextLink href={navItem.href ?? '#'} passHref shallow={true}>
                 <Link
-                  onClick={() => {
-                    console.log(navItem.href)
-                    console.log(navItem.label)
-                    debugger;
-                  }}
                   p={2}
                   fontSize={'sm'}
                   fontWeight={500}
@@ -275,25 +270,23 @@ const MobileNavItem = ({label, children, href}) => {
           borderColor={useColorModeValue('gray.200', 'gray.700')}
           align={'start'}>
           {children &&
-          children.map((child) => (
-            <NextLink
-              key={child.label}
-              href={child.href}
-              shallow={true}
-              passHref
-            >
-              <Link
-                onClick={() => {
-                  console.log(child.label)
-                  console.log(child.label)
-                  debugger;
-                }}
-                py={2}
+          children.map((child) => {
+            console.log('mobile nav item: ', JSON.stringify(child))
+            return (
+              <NextLink
+                key={child.label}
+                href={child.href}
+                shallow={true}
+                passHref
               >
-                {child.label}
-              </Link>
-            </NextLink>
-          ))}
+                <Link
+                  py={2}
+                >
+                  {child.label}
+                </Link>
+              </NextLink>
+            )
+          })}
         </Stack>
       </Collapse>
     </Stack>

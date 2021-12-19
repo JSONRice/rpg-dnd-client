@@ -82,7 +82,7 @@ export default function Character() {
           <SpellStats character={parsedCharacter}/>
         </DndAccordion>
         <NextLink href={'/map'} passHref shallow={true}>
-          <h4>To Maps</h4>
+          <a>My Store</a>
         </NextLink>
       </>
     </>
