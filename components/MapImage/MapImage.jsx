@@ -1,4 +1,12 @@
 import React, {useEffect} from 'react'
+import styled from '@emotion/styled'
+import { useMediaQuery } from '@chakra-ui/react'
+
+const Canvas = styled.canvas`
+  height: 100vh; 
+  width: 100vw; 
+  display: block;
+`
 
 export const MapImage = ({title}) => {
 
@@ -143,11 +151,12 @@ export const MapImage = ({title}) => {
   }
 
   const ids = ["mouseX", "mouseY", "subX", "subY", "iWidth", "iHeight"]
+  const [isDesktop] = useMediaQuery('(min-width: 500px)')
 
   return (
     <div>
       <h1>{title}:</h1>
-      <canvas ref={canvasRef} id="canvas" width="800" height="800"/>
+      <canvas ref={canvasRef} id="canvas" width={`${isDesktop ? '800' : '700'}`} height="800"/>
       {
         ids.map((id, i) => <a id={id} key={`map-image-link-${i}`}/>)
       }
