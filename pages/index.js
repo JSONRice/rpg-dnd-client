@@ -46,7 +46,7 @@ export default function Login() {
   React.useEffect(() => {
     console.log('login useEffect ', isLoggedIn)
     if (isLoggedIn) {
-      router.push('/character', undefined, {shallow: true})
+      router.push('/map', undefined, {shallow: true})
     }
   })
 

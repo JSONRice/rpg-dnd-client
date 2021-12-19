@@ -81,9 +81,6 @@ export default function Character() {
         <DndAccordion title={<Title>Spells</Title>}>
           <SpellStats character={parsedCharacter}/>
         </DndAccordion>
-        <NextLink href={'/map'} passHref shallow={true}>
-          <a>My Store</a>
-        </NextLink>
       </>
     </>
   )
