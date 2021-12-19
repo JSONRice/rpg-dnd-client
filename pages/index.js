@@ -70,7 +70,7 @@ export default function Login() {
 
               dispatch({
                 type: SET_IS_LOGGED_IN,
-                payload: {character, error}
+                payload: {character, username, error}
               })
             })
             .catch(console.error)

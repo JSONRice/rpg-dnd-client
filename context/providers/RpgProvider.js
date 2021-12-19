@@ -38,7 +38,7 @@ const reducer = (state = initialState, action) => {
       }
     case SET_IS_LOGGED_IN:
 
-      let { character, error } = payload
+      let { character, username, error } = payload
       let isLoggedIn = !error && character && Object.keys(character).length > 0
 
       if (!isLoggedIn) {
@@ -50,6 +50,7 @@ const reducer = (state = initialState, action) => {
         character: {
           ...character
         },
+        username,
         isLoggedIn
       }
     case SET_CHARACTER:

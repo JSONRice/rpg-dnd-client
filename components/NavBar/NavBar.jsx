@@ -24,6 +24,7 @@ import {
 } from '@chakra-ui/icons';
 import NextLink from 'next/link'
 import {useRouter} from 'next/router'
+import {useRpgContext} from '../../context/providers'
 
 // See: https://chakra-templates.dev/navigation/navbar
 const NAV_ITEMS = [
@@ -69,6 +70,8 @@ const NAV_ITEMS = [
 ];
 
 export const NavBar = () => {
+  const {state: {username, isLoggedIn}} = useRpgContext()
+
   const {isOpen, onOpen, onClose, onToggle} = useDisclosure();
 
   const initialRef = React.useRef()
@@ -122,8 +125,9 @@ export const NavBar = () => {
             fontSize={'sm'}
             fontWeight={400}
             variant={'link'}
-            href={'#'}>
-            Sign In
+            href={'#'}
+          >
+            <b>{(isLoggedIn && username) || 'Please Log In'}</b>
           </Button>
         </Stack>
       </Flex>

@@ -19,7 +19,6 @@ const Title = ({children}) => (
 export default function Character() {
   const router = useRouter()
   let {state} = useRpgContext()
-
   let {character, isLoggedIn} = state
 
   React.useEffect(() => {
