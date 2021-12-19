@@ -23,6 +23,7 @@ import {
   ChevronRightIcon
 } from '@chakra-ui/icons';
 import NextLink from 'next/link'
+import {useRouter} from 'next/router'
 
 // See: https://chakra-templates.dev/navigation/navbar
 const NAV_ITEMS = [
@@ -144,7 +145,11 @@ const DesktopNav = () => {
         <Box key={navItem.label}>
           <Popover trigger={'hover'} placement={'bottom-start'}>
             <PopoverTrigger>
-              <NextLink href={navItem.href ?? '#'} passHref shallow={true}>
+              <NextLink
+                href={navItem.href ?? '#'}
+                passHref
+                shallow={true}
+              >
                 <Link
                   p={2}
                   fontSize={'sm'}
@@ -231,40 +236,39 @@ const MobileNav = () => {
   );
 };
 
-const MobileNavItem = ({label, children, href}) => {
+const MobileNavItem = ({label, children, href = '#'}) => {
   const {isOpen, onToggle} = useDisclosure();
+  const router = useRouter()
 
   return (
     <Stack spacing={4} onClick={children && onToggle}>
-      <NextLink
-        href={href ?? '#'}
-        shallow={true}
-        passHref
-      >
-        <Flex
-          py={2}
-          as={Link}
-          justify={'space-between'}
-          align={'center'}
-          _hover={{
-            textDecoration: 'none'
-          }}>
-          <Text
-            fontWeight={600}
-            color={useColorModeValue('gray.600', 'gray.200')}>
-            {label}
-          </Text>
-          {children && (
-            <Icon
-              as={ChevronDownIcon}
-              transition={'all .25s ease-in-out'}
-              transform={isOpen ? 'rotate(180deg)' : ''}
-              w={6}
-              h={6}
-            />
-          )}
-        </Flex>
-      </NextLink>
+      <Flex
+        onClick={e => {
+          e.preventDefault()
+          router.push(href, undefined, {shallow: true})
+        }}
+        py={2}
+        as={Link}
+        justify={'space-between'}
+        align={'center'}
+        _hover={{
+          textDecoration: 'none'
+        }}>
+        <Text
+          fontWeight={600}
+          color={useColorModeValue('gray.600', 'gray.200')}>
+          {label}
+        </Text>
+        {children && (
+          <Icon
+            as={ChevronDownIcon}
+            transition={'all .25s ease-in-out'}
+            transform={isOpen ? 'rotate(180deg)' : ''}
+            w={6}
+            h={6}
+          />
+        )}
+      </Flex>
       <Collapse in={isOpen} animateOpacity style={{marginTop: '0!important'}}>
         <Stack
           mt={2}
@@ -274,9 +278,7 @@ const MobileNavItem = ({label, children, href}) => {
           borderColor={useColorModeValue('gray.200', 'gray.700')}
           align={'start'}>
           {children &&
-          children.map((child) => {
-            console.log('mobile nav item: ', JSON.stringify(child))
-            return (
+          children.map((child) => (
               <NextLink
                 key={child.label}
                 href={child.href}
@@ -290,7 +292,7 @@ const MobileNavItem = ({label, children, href}) => {
                 </Link>
               </NextLink>
             )
-          })}
+          )}
         </Stack>
       </Collapse>
     </Stack>
