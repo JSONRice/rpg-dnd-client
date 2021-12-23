@@ -1,12 +1,5 @@
 import React, {useEffect} from 'react'
-import styled from '@emotion/styled'
-import { useMediaQuery } from '@chakra-ui/react'
-
-const Canvas = styled.canvas`
-  height: 100vh; 
-  width: 100vw; 
-  display: block;
-`
+import {useMediaQuery} from '@chakra-ui/react'
 
 export const MapImage = ({title}) => {
 
@@ -26,6 +19,11 @@ export const MapImage = ({title}) => {
   let iWidth = 0;
   let isDragging = false;
   let img;
+
+  // This was recently added to support pinch zoom (mobile).
+  let imgScale = 1
+  let touchDist = 0
+  let isScaling = false
 
   useEffect(() => {
     ctx = canvasRef.current.getContext("2d");
@@ -71,6 +69,18 @@ export const MapImage = ({title}) => {
     img.src = "/testwebmap.jpg";
   }, [])
 
+  /**
+   * Pinch zoom distance (between two points)
+   * This was recently added to support pinch zoom (mobile).
+   * @param e
+   * @returns {number}
+   */
+  function distance(e) {
+    let zw = e.touches[0].pageX - e.touches[1].pageX;
+    let zh = e.touches[0].pageY - e.touches[1].pageY;
+    return Math.sqrt(zw * zw + zh * zh);
+  }
+
   function setCoordinates(e) {
     let canMouseX;
     let canMouseY;
@@ -79,9 +89,10 @@ export const MapImage = ({title}) => {
       canMouseX = parseInt(e.clientX - offsetX);
       canMouseY = parseInt(e.clientY - offsetY);
     } else if (e.targetTouches) {
-      canMouseX = parseInt(e.targetTouches[0].clientX - offsetX);
-      canMouseY = parseInt(e.targetTouches[0].clientY - offsetY);
-      e.preventDefault();
+      canMouseX = parseInt(e.targetTouches.item(0)?.clientX - offsetX);
+      canMouseY = parseInt(e.targetTouches.item(0)?.clientY - offsetY);
+      // This isn't doing anything (noticeable)
+      // e.preventDefault();
     }
 
     return {
@@ -99,8 +110,19 @@ export const MapImage = ({title}) => {
     oldMouseX = canMouseX;
     oldMouseY = canMouseY;
 
-    // set the drag flag
-    isDragging = true;
+    // This was recently added to support pinch zoom (mobile).
+    if (e?.targetTouches) {
+      e.preventDefault()
+      if (e?.touches?.length > 1) {
+        // detected a pinch
+        touchDist = distance(e);
+        isScaling = true;
+      } else {
+        // set the drag flag
+        isDragging = true;
+        isScaling = false;
+      }
+    }
   }
 
   function handleMouseUp(e) {
@@ -121,6 +143,14 @@ export const MapImage = ({title}) => {
     const {canMouseX, canMouseY} = setCoordinates(e);
     document.getElementById("mouseX").innerHTML = canMouseX;
     document.getElementById("mouseY").innerHTML = canMouseY;
+
+    // This was recently added to support pinch zoom (mobile).
+    if (isScaling && touchDist) {
+      imgScale = distance(e) / touchDist;
+      if (imgScale < 1) {
+        imgScale = 1;
+      }
+    }
 
     // if the drag flag is set, clear the canvas and draw the image
     if (isDragging) {
